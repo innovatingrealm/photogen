@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Photobooth</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Flash effect container -->
+    <div class="flash"></div>
+    
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-camera-retro"></i> AI Photobooth</h1>
+            <p>Transform your photos with the power of AI - capture moments, create magic</p>
+        </header>
+
+        <main>
+            <div class="booth-container">
+                <div class="camera-container">
+                    <video id="camera" autoplay playsinline muted></video>
+                    <div class="camera-frame"></div>
+                    <canvas id="canvas" class="hidden"></canvas>
+                    <div class="controls">
+                        <button id="capture-btn" class="btn" disabled>Take Photo</button>
+                        <button id="retake-btn" class="btn hidden">Retake / Clear</button>
+                        <label for="upload-input" class="btn upload-btn">Upload Image</label>
+                        <input type="file" id="upload-input" accept="image/*" class="hidden">
+                    </div>
+                </div>
+
+                <div class="prompt-container">
+                    <label for="prompt-input"><i class="fas fa-magic"></i> Transformation Prompt</label>
+                    <input type="text" id="prompt-input" placeholder="e.g., 'Make it look like a watercolor painting', 'Turn into a cartoon character'">
+                </div>
+
+                <div class="style-buttons">
+                    <button class="style-btn" data-prompt="Turn the subject into a Dragonball Z character"><i class="fas fa-dragon"></i> Dragonball Z</button>
+                    <button class="style-btn" data-prompt="Turn the subject into a Simpsons character"><i class="fas fa-tv"></i> Simpsons</button>
+                    <button class="style-btn" data-prompt="Turn the subject into a South Park character"><i class="fas fa-snowman"></i> South Park</button>
+                    <button class="style-btn" data-prompt="Turn the subject into a cyberpunk character with neon lights"><i class="fas fa-rocket"></i> Cyberpunk</button>
+                </div>
+                
+                <div class="results-container">
+                    <div id="photo-preview" class="photo-container">
+                        <img id="captured-image" class="hidden" alt="Your photo">
+                        <div class="placeholder">Your photo will appear here <i class="fas fa-camera"></i></div>
+                    </div>
+                    
+                    <div id="loading" class="loading hidden">
+                        <div class="spinner"></div>
+                        <p><i class="fas fa-wand-magic-sparkles"></i> Generating AI magic...</p>
+                    </div>
+                    
+                    <div id="result-preview" class="photo-container">
+                        <img id="result-image" class="hidden" alt="Transformed version">
+                        <div class="placeholder">Transformed version will appear here <i class="fas fa-wand-magic"></i></div>
+                    </div>
+                </div>
+
+                <div id="status-message" class="status-message hidden"></div> <!-- Added Status Area -->
+                
+                <!-- Image Reel/Carousel Section -->
+                <div id="image-reel" class="image-reel hidden">
+                    <h2><i class="fas fa-images"></i> Recent Photos & AI Transformations</h2>
+                    <div class="reel-container">
+                        <button id="reel-prev" class="reel-nav-btn"><i class="fas fa-chevron-left"></i></button>
+                        <div class="reel-image-wrapper">
+                            <img id="reel-image" src="" alt="Reel Image" class="reel-image">
+                            <div id="reel-type" class="reel-type"></div>
+                        </div>
+                        <button id="reel-next" class="reel-nav-btn"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div id="reel-loading" class="reel-loading hidden"><i class="fas fa-spinner fa-spin"></i> Loading images...</div>
+                    <div id="reel-empty" class="reel-empty hidden">No images yet. Be the first to create one!</div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button id="transform-btn" class="btn primary-btn" disabled><i class="fas fa-magic"></i> Transform Image</button>
+                    <button id="download-btn" class="btn hidden"><i class="fas fa-download"></i> Download Image</button>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Powered by OpenAI Image Generation <i class="fas fa-bolt"></i></p>
+        </footer>
+    </div>
+    
+    <script src="js/app.js"></script>
+</body>
+</html>
